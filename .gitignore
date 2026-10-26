@@ -1,0 +1,16 @@
+.venv/
+.vercel/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+*.log
+data/
+reports/
+ui-backup-*/
+models/.*
+models/*.onnx
+models/emotion_model.keras
+models/emotion_model.json

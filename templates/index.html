@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emotion Analysis</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='camera.js') }}"></script>
+</head>
+<body>
+  <main>
+    <div class="columns">
+      <section class="panel">
+        <div class="panel-heading">
+          <h2>Webcam</h2>
+          <span id="model-status" class="state" role="status">Loading…</span>
+        </div>
+        <div class="camera-area">
+          <video id="video" autoplay muted playsinline aria-label="Live webcam feed"></video>
+          <canvas id="overlay" aria-hidden="true"></canvas>
+          <p id="camera-placeholder">Camera is off</p>
+        </div>
+        <div class="buttons">
+          <button id="start" type="button" disabled>Start camera</button>
+          <button id="stop" type="button" disabled>Stop camera</button>
+          <button id="reset" type="button">Reset session</button>
+        </div>
+        <p id="camera-status" role="status" aria-live="polite">Start the camera to begin.</p>
+        {% if hosted %}
+        <p class="small">Frames are sent to this server for prediction and are not saved.</p>
+        {% endif %}
+      </section>
+
+      <section class="panel results">
+        <h2>Current prediction</h2>
+        <p id="expression" class="expression">—</p>
+        <dl>
+          <div><dt>Confidence</dt><dd id="confidence">—</dd></div>
+          <div><dt>Processing time</dt><dd id="response-time">—</dd></div>
+          <div><dt>Faces detected</dt><dd id="face-count">—</dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <h2>Session summary</h2>
+        <span id="session-total" class="small">0 predictions</span>
+      </div>
+      <div id="counts" class="counts"></div>
+      <h3>Recent predictions</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Time</th><th>Expression</th><th>Confidence</th></tr></thead>
+          <tbody id="history"><tr><td colspan="3">No predictions yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

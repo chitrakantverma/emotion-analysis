@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "python download_model.py",
+  "functions": {
+    "app.py": {
+      "maxDuration": 60,
+      "includeFiles": "{templates/**,models/**}",
+      "excludeFiles": "{tests/**,notebooks/**,data/**,reports/**,train.py,evaluate.py,download_model.py,requirements-training.txt}"
+    }
+  },
+  "headers": [
+    {
+      "source": "/static/:path*",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ]
+}

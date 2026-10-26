@@ -1,0 +1,4 @@
+-r requirements.txt
+tensorflow==2.20.0
+scikit-learn==1.7.2
+matplotlib==3.10.7
